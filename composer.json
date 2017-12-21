@@ -1,5 +1,5 @@
 {
-  "name": "Joyce/WordpressMiddleware",
+  "name": "joyce/wordpress-middleware",
   "description": "Wrapper for wordpress to work inside a middleware-pipeline",
   "minimum-stability": "alpha",
   "license": "Apache-2.0",
