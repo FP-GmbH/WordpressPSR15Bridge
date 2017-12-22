@@ -11,7 +11,7 @@ namespace Joyce\WordpressMiddleware\Service;
 
 class WordpressBridgeService
 {
-    public const WORDPRESS_FILENAME = 'public/wordpress/index.php';
+    const WORDPRESS_FILENAME = 'public/wordpress/index.php';
 
     /**
      * Include wordpress and buffer its output
