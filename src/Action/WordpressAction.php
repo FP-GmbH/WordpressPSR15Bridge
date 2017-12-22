@@ -20,7 +20,7 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 
 class WordpressAction implements MiddlewareInterface
 {
-    public const DEFAULT_TEMPLATE = 'joyce::wordpress-blank';
+    public const DEFAULT_TEMPLATE = 'wordpress::wordpress-blank';
     public const FRONTEND_KEY_WORDPRESS = 'wordpress_string';
     /** @var TemplateRendererInterface */
     private $template;
@@ -42,7 +42,7 @@ class WordpressAction implements MiddlewareInterface
      *
      * @return ResponseInterface
      */
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate): ResponseInterface
+    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         $wordpress_output = $this->wordpressBridgeService->getStdOutString();
         $rendered = $this->template->render(
