@@ -44,7 +44,9 @@ class WordpressAction implements MiddlewareInterface
         $this->template = $template;
         $this->wordpressBridgeService = $wordpressBridgeService;
         $this->setTemplateId($templateId);
-        $this->setLayoutKey($layoutKey);
+        if (null !== $layoutKey) {
+            $this->setLayoutKey($layoutKey);
+        }
     }
 
     /**
