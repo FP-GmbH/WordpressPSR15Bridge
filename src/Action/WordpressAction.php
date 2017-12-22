@@ -11,7 +11,7 @@ namespace Joyce\WordpressMiddleware\Action;
 
 use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface;
-use InvalidArgumentException;
+use Joyce\WordpressMiddleware\Exception\InvalidArgumentException;
 use Joyce\WordpressMiddleware\Service\WordpressBridgeService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -20,17 +20,31 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 
 class WordpressAction implements MiddlewareInterface
 {
-    const DEFAULT_TEMPLATE = 'wordpress::wordpress-blank';
-    const FRONTEND_KEY_WORDPRESS = 'wordpress_string';
+
     /** @var TemplateRendererInterface */
     private $template;
 
     private $wordpressBridgeService;
+    /**
+     * @var string Identifier for Layout to render
+     */
+    private $templateId = '';
+    /**
+     * @var string Key to access wordpress content within the template
+     */
+    private $layoutKey = 'wordpress_string';
 
-    public function __construct(TemplateRendererInterface $template, WordpressBridgeService $wordpressBridgeService)
+    public function __construct(
+        TemplateRendererInterface $template,
+        WordpressBridgeService $wordpressBridgeService,
+        $templateId,
+        $layoutKey = null
+    )
     {
         $this->template = $template;
         $this->wordpressBridgeService = $wordpressBridgeService;
+        $this->setTemplateId($templateId);
+        $this->setLayoutKey($layoutKey);
     }
 
     /**
@@ -46,15 +60,39 @@ class WordpressAction implements MiddlewareInterface
     {
         $wordpress_output = $this->wordpressBridgeService->getStdOutString();
         $rendered = $this->template->render(
-            self::DEFAULT_TEMPLATE,
-            [self::FRONTEND_KEY_WORDPRESS => $wordpress_output]
+            $this->templateId,
+            [$this->layoutKey => $wordpress_output]
         );
 
         try {
             return new HtmlResponse($rendered);
-        } catch (InvalidArgumentException $exception) {
+        } catch (\InvalidArgumentException $exception) {
             //todo: log or do something else.
             return $delegate->process($request);
         }
+    }
+
+    /**
+     * @param string $templateId
+     * @throws \Joyce\WordpressMiddleware\Exception\InvalidArgumentException
+     */
+    public function setTemplateId($templateId)
+    {
+        if (!is_string($templateId)) {
+            throw new InvalidArgumentException('Template id must be string');
+        }
+        $this->templateId = $templateId;
+    }
+
+    /**
+     * @param string $layoutKey
+     * @throws \Joyce\WordpressMiddleware\Exception\InvalidArgumentException
+     */
+    public function setLayoutKey($layoutKey)
+    {
+        if (!is_string($layoutKey)) {
+            throw new InvalidArgumentException('Layout key must be of type string');
+        }
+        $this->layoutKey = $layoutKey;
     }
 }
