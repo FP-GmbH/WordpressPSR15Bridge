@@ -1,8 +1,8 @@
 {
-  "name": "feig-partner/wordpress-middleware",
-  "description": "Wrapper for wordpress to work inside a middleware-pipeline",
+  "name": "fup/wordpress-middleware",
+  "description": "This PSR-15 middleware allows you to include Wordpress into your Middleware-Pipeline",
   "minimum-stability": "dev",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "prefer-stable": true,
   "authors": [
     {
@@ -12,12 +12,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "Joyce\\WordpressMiddleware\\": "src"
+      "Fup\\WordpressMiddleware\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Joyce\\WordpressMiddleware\\test\\": "test"
+      "Fup\\WordpressMiddleware\\test\\": "test"
     }
   },
   "require": {
