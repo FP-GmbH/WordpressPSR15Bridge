@@ -35,18 +35,19 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-expressive-template" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter home="docker://php:7.2/php" id="7b248407-cd48-4c5f-8bf5-8824493516d1" name="php:7.2" debugger_id="php.debugger.XDebug">
+      <interpreter home="docker://php:7.2/php" id="7b248407-cd48-4c5f-8bf5-8824493516d1" name="php:7.2 (project level)" debugger_id="php.debugger.XDebug">
         <remote_data DOCKER_ACCOUNT_NAME="Docker" DOCKER_IMAGE_NAME="php:7.2" DOCKER_REMOTE_PROJECT_PATH="/opt/project" INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" />
       </interpreter>
     </interpreters>
   </component>
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
-      <interpreter name="php:7.2">
+      <interpreter name="php:7.2 (project level)">
         <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.2.0">
           <additional_php_ini />
           <configuration_file />
@@ -267,4 +268,9 @@
     </phpInfoCache>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
 </project>
