@@ -1,12 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: bastian_charlet
+ * This file is part of F&P ♡ Creating Communities package "WordpressMiddleware".
+ *
+ * User: bastian_charlet <bc@fp.de>
  * Date: 22.12.2017
  * Time: 14:16
  */
 
-namespace Joyce\WordpressMiddleware\Exception;
+namespace Fup\WordpressMiddleware\Exception;
 
 
 class InvalidArgumentException extends \InvalidArgumentException

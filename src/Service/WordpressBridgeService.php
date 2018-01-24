@@ -1,16 +1,17 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: bastian_charlet
+ * This file is part of F&P ♡ Creating Communities package "WordpressMiddleware".
+ *
+ * User: bastian_charlet <bc@fp.de>
  * Date: 15.12.2017
  * Time: 11:07
  */
 
-namespace Joyce\WordpressMiddleware\Service;
+namespace Fup\WordpressMiddleware\Service;
 
 
-use Joyce\WordpressMiddleware\Exception\FileNotFoundException;
-use Joyce\WordpressMiddleware\Exception\InvalidArgumentException;
+use Fup\WordpressMiddleware\Exception\FileNotFoundException;
+use Fup\WordpressMiddleware\Exception\InvalidArgumentException;
 
 class WordpressBridgeService
 {
@@ -22,7 +23,7 @@ class WordpressBridgeService
     /**
      * WordpressBridgeService constructor.
      * @param null $pathToIndex
-     * @throws \Joyce\WordpressMiddleware\Exception\FileNotFoundException
+     * @throws \Fup\WordpressMiddleware\Exception\FileNotFoundException
      * @throws \InvalidArgumentException
      */
     public function __construct($pathToIndex = null)

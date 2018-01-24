@@ -1,18 +1,19 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: bastian_charlet
+ * This file is part of F&P ♡ Creating Communities package "WordpressMiddleware".
+ *
+ * User: bastian_charlet <bc@fp.de>
  * Date: 20.11.2017
  * Time: 17:30
  */
 
-namespace Joyce\WordpressMiddleware\Action;
+namespace Fup\WordpressMiddleware\Action;
 
 
+use Fup\WordpressMiddleware\Exception\InvalidArgumentException;
+use Fup\WordpressMiddleware\Service\WordpressBridgeService;
 use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface;
-use Joyce\WordpressMiddleware\Exception\InvalidArgumentException;
-use Joyce\WordpressMiddleware\Service\WordpressBridgeService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -76,7 +77,7 @@ class WordpressAction implements MiddlewareInterface
 
     /**
      * @param string $templateId
-     * @throws \Joyce\WordpressMiddleware\Exception\InvalidArgumentException
+     * @throws \Fup\WordpressMiddleware\Exception\InvalidArgumentException
      */
     public function setTemplateId($templateId)
     {
@@ -88,7 +89,7 @@ class WordpressAction implements MiddlewareInterface
 
     /**
      * @param string $layoutKey
-     * @throws \Joyce\WordpressMiddleware\Exception\InvalidArgumentException
+     * @throws \Fup\WordpressMiddleware\Exception\InvalidArgumentException
      */
     public function setLayoutKey($layoutKey)
     {
