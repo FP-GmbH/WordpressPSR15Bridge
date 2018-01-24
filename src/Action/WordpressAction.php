@@ -9,8 +9,8 @@
 namespace Joyce\WordpressMiddleware\Action;
 
 
-use Interop\Http\Server\MiddlewareInterface;
-use Interop\Http\Server\RequestHandlerInterface;
+use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Joyce\WordpressMiddleware\Exception\InvalidArgumentException;
 use Joyce\WordpressMiddleware\Service\WordpressBridgeService;
 use Psr\Http\Message\ResponseInterface;
@@ -24,9 +24,6 @@ class WordpressAction implements MiddlewareInterface
     /** @var TemplateRendererInterface */
     private $template;
 
-    /**
-     * @var WordpressBridgeService
-     */
     private $wordpressBridgeService;
     /**
      * @var string Identifier for Layout to render
@@ -57,12 +54,11 @@ class WordpressAction implements MiddlewareInterface
      * to the next middleware component to create the response.
      *
      * @param ServerRequestInterface $request
+     * @param DelegateInterface $delegate
      *
-     * @param RequestHandlerInterface $requestHandler
      * @return ResponseInterface
-     * @throws \Joyce\WordpressMiddleware\Exception\InvalidArgumentException
      */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $requestHandler)
+    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         $wordpress_output = $this->wordpressBridgeService->getStdOutString();
         $rendered = $this->template->render(
@@ -73,7 +69,8 @@ class WordpressAction implements MiddlewareInterface
         try {
             return new HtmlResponse($rendered);
         } catch (\InvalidArgumentException $exception) {
-            throw new InvalidArgumentException($exception->getMessage(), $exception->getCode(), $exception->getFile());
+            //todo: log or do something else.
+            return $delegate->process($request);
         }
     }
 
